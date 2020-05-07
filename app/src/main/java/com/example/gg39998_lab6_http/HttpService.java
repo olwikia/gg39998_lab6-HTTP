@@ -35,7 +35,7 @@ public class HttpService extends IntentService {
     public HttpService() {
         super("HTTP calls handler");
     }
-    
+
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         try {
