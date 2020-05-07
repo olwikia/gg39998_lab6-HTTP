@@ -22,4 +22,5 @@
     <string name="lose">Niestety, przegrałeś tą rozgrywkę.\nZagraj ponownie!</string>
     <string name="TicTacToe">Tic Tac Toe</string>
     <string name="inaRow">4 in a Row</string>
+    <string name="httpGames">Http Games</string>
 </resources>
