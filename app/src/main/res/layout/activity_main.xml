@@ -8,7 +8,7 @@
     android:background="@drawable/main">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/ticTac"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="40dp"
@@ -17,13 +17,13 @@
         android:layout_marginBottom="20dp"
         android:onClick="gameList"
         android:text="@string/TicTacToe"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/inRow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/inRow"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="40dp"
@@ -35,5 +35,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/ticTac" />
 </androidx.constraintlayout.widget.ConstraintLayout>
