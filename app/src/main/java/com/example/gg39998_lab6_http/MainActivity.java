@@ -2,7 +2,9 @@ package com.example.gg39998_lab6_http;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,4 +13,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    public void gameList(View v) {
+        Intent intencja = new Intent( getApplicationContext(), GamesList.class);
+        intencja.putExtra("gra", v.getId());
+        startActivity(intencja);
+    }
+
 }

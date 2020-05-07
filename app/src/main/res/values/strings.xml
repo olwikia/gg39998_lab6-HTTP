@@ -20,4 +20,6 @@
     <string name="empty_list">Niestety brak gier, w które mógłbyś zagrać.\nUtwórz nową!</string>
     <string name="win">Gratulacje, wygrałeś tą rozgrywkę.\nZagraj ponownie!</string>
     <string name="lose">Niestety, przegrałeś tą rozgrywkę.\nZagraj ponownie!</string>
+    <string name="TicTacToe">Tic Tac Toe</string>
+    <string name="inaRow">4 in a Row</string>
 </resources>
