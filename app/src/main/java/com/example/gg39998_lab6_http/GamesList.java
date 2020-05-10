@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,7 +30,9 @@ public class GamesList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_games_list);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -47,6 +50,7 @@ public class GamesList extends AppCompatActivity {
 
         //Implement onClick Action - chose game for play
         ListView list = (ListView)findViewById(R.id.listView);
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -69,12 +73,12 @@ public class GamesList extends AppCompatActivity {
             }
         });
 
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View view) {
-                Intent intencja=null;
+                Intent intencja = null;
                 switch (game) {
                     case R.id.inRow:
                         intencja = new Intent(getApplicationContext(), inRow.class);
@@ -85,6 +89,7 @@ public class GamesList extends AppCompatActivity {
                             //TODO - when gamer choose TicTacToe Game
                             break;
                 }
+                Toast.makeText(getApplicationContext(), "fabbbb", Toast.LENGTH_LONG).show();
                 startActivity(intencja);
             }
         });
@@ -94,21 +99,29 @@ public class GamesList extends AppCompatActivity {
         ProgressBar spinner = (ProgressBar)findViewById(R.id.progressBar1);
         spinner.setVisibility(View.VISIBLE);
         Snackbar.make(findViewById(R.id.main_list), getString(R.string.refresh), Snackbar.LENGTH_SHORT) .setAction("Action", null).show();
+
+        ListView list = (ListView)findViewById(R.id.listView);
+        TextView emptyText = (TextView)findViewById(android.R.id.empty);
+
         Intent intencja = new Intent( getApplicationContext(), HttpService.class);
         PendingIntent pendingResult = createPendingResult(HttpService.GAMES_LIST, new Intent(),0);
         if(game == R.id.inRow){ intencja.putExtra(HttpService.URL, HttpService.LINES);
+            Toast.makeText(getApplicationContext(), "refresh!", Toast.LENGTH_LONG).show();
         }
         else{
             //TODO - geting ticTacToe games list
         }
         intencja.putExtra(HttpService.METHOD, HttpService.GET);
         intencja.putExtra(HttpService.RETURN, pendingResult);
+
         startService(intencja);
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == HttpService.GAMES_LIST) {
+
             //Hide loading spinner
             ProgressBar spinner = (ProgressBar) findViewById(R.id.progressBar1);
             spinner.setVisibility(View.GONE);
@@ -143,6 +156,7 @@ public class GamesList extends AppCompatActivity {
                 }//if "no game" do nothing
             } catch (Exception ex) {
                 ex.printStackTrace();
+
             }
         } else if (requestCode == HttpService.GAME_INFO) {
             //Hide loading spinner
@@ -182,6 +196,7 @@ public class GamesList extends AppCompatActivity {
                 } catch (Exception ex) {
                     //For JSON Object
                     ex.printStackTrace();
+
                 }
             } else if (game == R.id.ticTac) {
                 //TODO - start chosen game for TicTacToe

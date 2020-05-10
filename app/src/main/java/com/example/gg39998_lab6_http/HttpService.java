@@ -89,7 +89,7 @@ public class HttpService extends IntentService {
             reply.send(this, responseCode, returns);
 
         }catch (Exception ex){
-
+            Log.d("CONNERROR", ex.toString());
         }
     }
 }

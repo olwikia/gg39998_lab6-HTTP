@@ -79,62 +79,57 @@ public class inRow extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==HttpService.IN_ROW) {
-            try{
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == HttpService.IN_ROW) {
+            try {
                 JSONObject response = new JSONObject(data.getStringExtra(HttpService.RESPONSE));
                 if (resultCode == 200) {
-                    if(game_id==0)
+                    if (game_id == 0)
                         game_id = response.getInt("game_id");
                     GridView gv = (GridView) findViewById(R.id.gridView);
-                    inRowBoard game = (inRowBoard)gv.getAdapter();
+                    inRowBoard game = (inRowBoard) gv.getAdapter();
                     int game_status = game.checkWin();
-                    if (game_status==0)
+                    if (game_status == 0)
                         hints(inRow.WAIT);
-                    else{
-                        if(game_status==player) hints(inRow.WIN);
+                    else {
+                        if (game_status == player) hints(inRow.WIN);
                         else
                             hints(inRow.LOSE);
                     }
-                }
-                else{
-                    if(resultCode==500)
+                } else {
+                    if (resultCode == 500)
                         hints(inRow.NETWORK_ERROR);
                     else
                         hints(inRow.ERROR);
                 }
                 Thread.sleep(5000);
                 refresh(null);
+            } catch (Exception ex) {
+                hints(inRow.ERROR);
+                ex.printStackTrace();
             }
-            catch (Exception ex){
-
-            }
-        }
-        else if(requestCode==HttpService.REFRESH){
-            try{
+        } else if (requestCode == HttpService.REFRESH) {
+            try {
                 JSONObject response = new JSONObject(data.getStringExtra(HttpService.RESPONSE));
                 moves = response.getString("moves");
                 GridView gv = (GridView) findViewById(R.id.gridView);
-                inRowBoard game = new inRowBoard(this,moves);
+                inRowBoard game = new inRowBoard(this, moves);
                 gv.setAdapter(game);
-                if(response.getInt("status")==player){
-                    if(game.checkWin()==player) {
+                if (response.getInt("status") == player) {
+                    if (game.checkWin() == player) {
                         hints(inRow.WIN);
-                    }
-                    else if(game.checkWin()!=0){
+                    } else if (game.checkWin() != 0) {
                         hints(inRow.LOSE);
-                    }
-                    else {
+                    } else {
                         status = inRow.YOUR_TURN;
                         hints(status);
                     }
-                }
-                else{
+                } else {
                     Thread.sleep(5000);
                     refresh(null);
                 }
-            }
-            catch (Exception ex){
-
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
     }
