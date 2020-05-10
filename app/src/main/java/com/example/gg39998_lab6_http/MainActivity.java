@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void gameList(View v) {
-        Toast.makeText(getApplicationContext(), "This is my Toast message!", Toast.LENGTH_LONG).show();
-
         Intent intencja = new Intent( getApplicationContext(), GamesList.class);
         intencja.putExtra("gra", v.getId());
 

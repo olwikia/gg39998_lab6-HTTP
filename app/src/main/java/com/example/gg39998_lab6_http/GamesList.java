@@ -54,13 +54,13 @@ public class GamesList extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
                 ProgressBar spinner = (ProgressBar)findViewById(R.id.progressBar1);
                 spinner.setVisibility(View.VISIBLE);
                 String game_id = arg0.getItemAtPosition(arg2).toString().replace("ID: ","");
 
-                Intent intencja = new Intent(
-                        getApplicationContext(),
-                        HttpService.class);
+
+                Intent intencja = new Intent(getApplicationContext(), HttpService.class);
                 PendingIntent pendingResult = createPendingResult(HttpService.GAME_INFO, new Intent(),0);
                 if(game == R.id.inRow){
                     intencja.putExtra(HttpService.URL, HttpService.LINES+game_id);
@@ -89,7 +89,7 @@ public class GamesList extends AppCompatActivity {
                             //TODO - when gamer choose TicTacToe Game
                             break;
                 }
-                Toast.makeText(getApplicationContext(), "fabbbb", Toast.LENGTH_LONG).show();
+
                 startActivity(intencja);
             }
         });
