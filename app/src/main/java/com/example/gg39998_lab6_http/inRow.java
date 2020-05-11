@@ -35,6 +35,8 @@ public class inRow extends AppCompatActivity {
     public static final int WIN = 6;
     public static final int LOSE = 7;
 
+
+    private static final int test = 1;
     //Actual status
     private int status;
     //Game id
@@ -71,7 +73,7 @@ public class inRow extends AppCompatActivity {
 
                 if(status!=inRow.WAIT)
                 {
-                    Toast.makeText(getApplicationContext(), "wszedł", Toast.LENGTH_LONG).show();
+
                     //User cannot move
                     status = inRow.WAIT;
                     //Show hint about sending move
@@ -169,6 +171,7 @@ public class inRow extends AppCompatActivity {
 
         } else if (requestCode == HttpService.REFRESH) {
             //Refresh board
+            Toast.makeText(this, "Refreszuje", Toast.LENGTH_SHORT).show();
             try {
                 //Parse response from server
                 JSONObject response = new JSONObject(data.getStringExtra(HttpService.RESPONSE));
@@ -191,6 +194,7 @@ public class inRow extends AppCompatActivity {
                     }
                 } else {
                     //Cal refresh again after 5sec, because it's not your turn
+                    //Toast.makeText(this, "Refreszuje", Toast.LENGTH_SHORT).show();
                     Thread.sleep(5000);
                     refresh(null);
                 }
