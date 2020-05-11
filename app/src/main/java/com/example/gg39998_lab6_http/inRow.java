@@ -34,9 +34,7 @@ public class inRow extends AppCompatActivity {
     public static final int NETWORK_ERROR = 5;
     public static final int WIN = 6;
     public static final int LOSE = 7;
-
-
-    private static final int test = 1;
+    
     //Actual status
     private int status;
     //Game id
