@@ -8,7 +8,7 @@
     android:id="@+id/main_list"
     android:backgroundTintMode="multiply">
 
-
+    
     <TextView
         android:id="@+id/inRowHint"
         android:layout_width="fill_parent"
@@ -36,6 +36,7 @@
         android:textFilterEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
