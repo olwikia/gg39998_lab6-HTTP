@@ -8,7 +8,7 @@
     android:id="@+id/main_list"
     android:backgroundTintMode="multiply">
 
-    
+
     <TextView
         android:id="@+id/inRowHint"
         android:layout_width="fill_parent"
@@ -33,6 +33,7 @@
         android:nestedScrollingEnabled="false"
         android:numColumns="7"
         android:stretchMode="columnWidth"
+
         android:textFilterEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
