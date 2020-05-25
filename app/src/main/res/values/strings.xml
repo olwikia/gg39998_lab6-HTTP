@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">gg39998_lab6-HTTP</string>
+    <string name="app_name">gg39998_lab7-HTTP</string>
     <string name="title_activity_games_list">GamesList</string>
     <string name="refres2">Odśwież</string>
     <!-- Strings used for fragments for navigation -->

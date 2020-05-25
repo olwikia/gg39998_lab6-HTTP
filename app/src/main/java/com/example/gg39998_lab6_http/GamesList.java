@@ -65,6 +65,7 @@ public class GamesList extends AppCompatActivity {
                 if(game == R.id.inRow){
                     intencja.putExtra(HttpService.URL, HttpService.LINES+game_id);
                 }else{
+                    intencja.putExtra(HttpService.URL, HttpService.XO+game_id);
                     //TODO - geting ticTacToe games list
                 }
                 intencja.putExtra(HttpService.METHOD, HttpService.GET);
@@ -87,6 +88,9 @@ public class GamesList extends AppCompatActivity {
                         break;
                         default:
                             //TODO - when gamer choose TicTacToe Game
+                            intencja = new Intent(getApplicationContext(), inTic.class);
+                            intencja.putExtra(inTic.STATUS, inTic.NEW_GAME);
+                            intencja.putExtra(inTic.MOVES, "");
                             break;
                 }
 
@@ -110,6 +114,7 @@ public class GamesList extends AppCompatActivity {
         }
         else{
             //TODO - geting ticTacToe games list
+            intencja.putExtra(HttpService.URL, HttpService.XO);
         }
         intencja.putExtra(HttpService.METHOD, HttpService.GET);
         intencja.putExtra(HttpService.RETURN, pendingResult);
@@ -199,7 +204,40 @@ public class GamesList extends AppCompatActivity {
 
                 }
             } else if (game == R.id.ticTac) {
-                //TODO - start chosen game for TicTacToe
+                //Create intent to start game 4inRow
+                Intent intencja = new Intent(getApplicationContext(), inTic.class);
+
+                try {
+                    //Parse server response
+                    JSONObject response = new JSONObject(data.getStringExtra(HttpService.RESPONSE));
+
+                    //Set Game number
+                    intencja.putExtra(inTic.GAME_ID, response.getInt("id"));
+
+                    if (response.getInt("status") == 0 && response.getInt("player1") == 2) {
+                        //connect to new game
+                        intencja.putExtra(inTic.STATUS, inTic.YOUR_TURN);
+                    } else if (response.getInt("status") == 1 && response.getInt("player1") == 1) {
+                        //time to player1 move
+                        intencja.putExtra(inTic.STATUS, inTic.YOUR_TURN);
+                    } else if (response.getInt("status") == 2 && response.getInt("player1") == 2) {
+                        //time to player2 move
+                        intencja.putExtra(inTic.STATUS, inTic.YOUR_TURN);
+                    } else
+                        intencja.putExtra(inTic.STATUS, inTic.WAIT);
+
+                    //set player number
+                    intencja.putExtra(inTic.PLAYER, response.getInt("player1"));
+                    //set previous moves
+                    intencja.putExtra(inTic.MOVES, response.getString("moves"));
+                    //start game
+                    startActivity(intencja);
+
+                } catch (Exception ex) {
+                    //For JSON Object
+                    ex.printStackTrace();
+
+                }
             }
         }
     }
