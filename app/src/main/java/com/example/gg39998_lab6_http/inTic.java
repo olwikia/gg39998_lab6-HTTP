@@ -149,17 +149,16 @@ public class inTic extends AppCompatActivity {
                 gv.setAdapter(game);
 
                 if (response.getInt("status") == player) {
-                    hints(inTic.LOSE);
                     if (game.checkWin() == player) {
                         hints(inTic.WIN);
+
                     }
-                    else if (game.checkWin() == 0) {
-                        status = inTic.YOUR_TURN;
-                        hints(status);
+                    else if(game.checkWin()!=0){
+                        hints(inTic.LOSE);
                     }
                     else {
-                        Toast.makeText(this, "przegrałeś", Toast.LENGTH_SHORT).show();
-                        hints(inTic.LOSE);
+                        status = inTic.YOUR_TURN;
+                        hints(status);
                     }
 
                 }
